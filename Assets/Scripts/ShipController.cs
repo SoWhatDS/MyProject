@@ -80,5 +80,13 @@ namespace Characters
         {
             _cameraOrbit?.CameraMovement();
         }
+        [ServerCallback]
+        private void OnTriggerEnter(Collider other)
+        {
+            gameObject.SetActive(false);
+            transform.position = NetworkManager.singleton.startPositions[Random.Range(0, NetworkManager.singleton.startPositions.Count)].position;
+            gameObject.SetActive(true);
+        }
+
     }
 }
